@@ -11,7 +11,6 @@ public class UserService implements UserMapper {
     @Autowired
     UserMapper userMapper;
 
-
     @Override
     public UserBean login(String phone, String password) {
         return userMapper.login(phone, password);
