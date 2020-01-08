@@ -1,11 +1,11 @@
 package com.example.demo.entity;
 
 public class UserBean {
-        private String user_name;
-        private String user_id;
-        private String user_avatar;
-        private String user_phone;
-        private String user_password;
+    private String user_name;
+    private String user_id;
+    private String user_avatar;
+    private String user_phone;
+    private String user_password;
 
     public String getUser_name() {
         return user_name;

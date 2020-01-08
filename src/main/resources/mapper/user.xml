@@ -10,10 +10,6 @@
         <result column="user_password" jdbcType="VARCHAR" property="user_password"/>
     </resultMap>
 
-    <select id="getAllUser" resultMap="BaseResultMap" resultType="com.example.demo.entity.UserBean">
-        SELECT * FROM user
-    </select>
-
     <insert id="register" >
         INSERT INTO user(user_phone,user_password) value (#{phone},#{password})
     </insert>

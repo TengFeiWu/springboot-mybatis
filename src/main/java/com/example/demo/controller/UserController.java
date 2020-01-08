@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ApiOperation(value = "登录")
     private BaseEntity login(String phone, String password) {
         BaseEntity baseEntity = new BaseEntity();
