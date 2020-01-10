@@ -23,6 +23,7 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ApiOperation(value = "登录")
+    @ApiParam()
     private BaseEntity login(String phone, String password) {
         BaseEntity baseEntity = new BaseEntity();
         UserBean login = userService.login(phone, password);

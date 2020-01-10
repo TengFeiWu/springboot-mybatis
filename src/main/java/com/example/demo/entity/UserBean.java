@@ -1,10 +1,26 @@
 package com.example.demo.entity;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "user")
 public class UserBean {
-    private String user_name;
-    private String user_id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long user_id;
+
+    @Column()
+    private String user_name ;
+
+    @Column()
     private String user_avatar;
+
+    @Column(nullable = false)
     private String user_phone;
+
+    @Column(nullable = false)
     private String user_password;
 
     public String getUser_name() {
@@ -15,11 +31,11 @@ public class UserBean {
         this.user_name = user_name;
     }
 
-    public String getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 
