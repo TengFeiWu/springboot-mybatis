@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.Utils;
 import com.example.demo.entity.BaseEntity;
 import com.example.demo.entity.UserBean;
 import com.example.demo.service.UserService;
@@ -26,14 +27,20 @@ public class UserController {
     @ApiParam()
     private BaseEntity login(String phone, String password) {
         BaseEntity baseEntity = new BaseEntity();
-        UserBean login = userService.login(phone, password);
-        if (login != null) {
-            baseEntity.setMessage("success");
-            baseEntity.setData(login);
-        } else {
-            baseEntity.setCode(-1);
-            baseEntity.setMessage("账号或密码错误");
+        if (Utils.PhoneUtils.Companion.isMobile(phone)){
+            UserBean login = userService.login(phone, password);
+            if (login != null) {
+                baseEntity.setMessage("success");
+                baseEntity.setData(login);
+            } else {
+                baseEntity.setCode(-1);
+                baseEntity.setMessage("账号或密码错误");
+            }
+        }else {
+            baseEntity.setCode(-2);
+            baseEntity.setMessage("请输入正确的手机号");
         }
+
 
         return baseEntity;
     }
@@ -43,15 +50,21 @@ public class UserController {
     @ApiOperation(value = "注册")
     private BaseEntity register(String phone, String password) {
         BaseEntity baseEntity = new BaseEntity();
-        UserBean user = userService.findUser(phone);
-        if (user != null) {
-            baseEntity.setCode(-1);
-            baseEntity.setMessage("该账号已注册");
-            return baseEntity;
+        if (Utils.PhoneUtils.Companion.isMobile(phone)){
+            UserBean user = userService.findUser(phone);
+            if (user != null) {
+                baseEntity.setCode(-1);
+                baseEntity.setMessage("该账号已注册");
+                return baseEntity;
+            }
+            userService.register(phone, password);
+            baseEntity.setMessage("success");
+            baseEntity.setData("注册成功！");
+        }else {
+            baseEntity.setCode(-2);
+            baseEntity.setMessage("请输入争确的手机号");
         }
-        userService.register(phone, password);
-        baseEntity.setMessage("success");
-        baseEntity.setData("注册成功！");
+
         return baseEntity;
     }
 }
