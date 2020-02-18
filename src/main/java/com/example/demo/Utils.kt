@@ -13,7 +13,6 @@ class Utils {
                         false
                     else
                         Pattern.compile(REGEX_MOBILE).matcher(phone).matches()
-
         }
     }
 
