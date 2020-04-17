@@ -1,6 +1,6 @@
-package com.example.demo.controller
+package com.example.chat.controller
 
-import com.example.demo.entity.BaseEntity
+import com.example.chat.entity.BaseEntity
 
 /**
  * @Author Mr.Wu

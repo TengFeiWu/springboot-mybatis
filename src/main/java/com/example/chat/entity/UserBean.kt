@@ -1,4 +1,4 @@
-package com.example.demo.entity
+package com.example.chat.entity
 
 import javax.persistence.*
 

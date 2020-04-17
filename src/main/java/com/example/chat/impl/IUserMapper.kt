@@ -1,6 +1,6 @@
-package com.example.demo.impl
+package com.example.chat.impl
 
-import com.example.demo.entity.UserBean
+import com.example.chat.entity.UserBean
 import org.apache.ibatis.annotations.Mapper
 
 
@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper
  * @DES
  */
 @Mapper
-interface UserMapper {
+interface IUserMapper {
     fun login(phone: String?, password: String?): UserBean?
     fun register(phone: String?, password: String?)
     fun findUser(phone: String?): UserBean?

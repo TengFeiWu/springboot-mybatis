@@ -1,4 +1,4 @@
-package com.example.demo.config
+package com.example.chat.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -18,13 +18,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 @Configuration
 @EnableSwagger2
-open class SwaggerConfig : WebMvcConfigurationSupport() {
+open class SwaggerConfig{
     @Bean
     open fun createRestApi(): Docket {
         return Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.demo"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.chat"))
                 .paths(PathSelectors.any())
                 .build()
     }
@@ -36,10 +36,4 @@ open class SwaggerConfig : WebMvcConfigurationSupport() {
                 .build()
     }
 
-    public override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
-        registry.addResourceHandler("swagger-ui.html")
-                .addResourceLocations("classpath:/META-INF/resources/")
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/")
-    }
 }

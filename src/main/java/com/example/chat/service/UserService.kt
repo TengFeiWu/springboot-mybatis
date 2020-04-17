@@ -1,7 +1,7 @@
-package com.example.demo.service
+package com.example.chat.service
 
-import com.example.demo.entity.UserBean
-import com.example.demo.impl.UserMapper
+import com.example.chat.entity.UserBean
+import com.example.chat.impl.IUserMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service
  * @DES
  */
 @Service
-class UserService : UserMapper {
+class UserService : IUserMapper {
     @Autowired
-    private val userMapper: UserMapper? = null
+    private val userMapper: IUserMapper? = null
 
     override fun login(phone: String?, password: String?): UserBean? = userMapper!!.login(phone, password)
 

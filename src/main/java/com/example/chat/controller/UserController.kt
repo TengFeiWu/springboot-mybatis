@@ -1,16 +1,13 @@
-package com.example.demo.controller
+package com.example.chat.controller
 
-import com.example.demo.Utils.PhoneUtils.Companion.isMobile
-import com.example.demo.entity.BaseEntity
-import com.example.demo.service.UserService
+import com.example.chat.Utils.PhoneUtils.Companion.isMobile
+import com.example.chat.entity.BaseEntity
+import com.example.chat.service.UserService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiParam
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 /**
  * @Author Mr.Wu
@@ -30,10 +27,10 @@ class UserController : BaseController() {
      * @param password
      * @return
      */
-    @RequestMapping(value = ["/login"])
-    @ApiOperation(value = "登录")
+    @RequestMapping(value = ["/login"], method = [RequestMethod.GET])
+    @ApiOperation(value = "登录", httpMethod = "GET")
     @ApiParam()
-    private fun login(phone: String, password: String): BaseEntity? {
+    private fun login(@RequestParam("手机号") phone: String, @RequestParam("密码") password: String): BaseEntity? {
         return if (isMobile(phone)) {
             val login = userService?.login(phone, password)
             if (login != null)
@@ -54,8 +51,8 @@ class UserController : BaseController() {
      */
     @ResponseBody
     @RequestMapping(value = ["/register"], method = [RequestMethod.POST])
-    @ApiOperation(value = "注册")
-    private fun register(phone: String, password: String): BaseEntity? {
+    @ApiOperation(value = "注册", httpMethod = "POST")
+    private fun register(@RequestParam("手机号") phone: String, @RequestParam("密码") password: String): BaseEntity? {
         return if (isMobile(phone)) {
             val user = userService?.findUser(phone)
             if (user != null) {
@@ -63,7 +60,6 @@ class UserController : BaseController() {
             } else {
                 userService?.register(phone, password)
                 postData(message = "success")
-
             }
         } else {
             postData(code = -2, message = "请输入正确的手机号")

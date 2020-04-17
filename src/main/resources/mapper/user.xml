@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.impl.UserMapper">
-    <resultMap id="BaseResultMap" type="com.example.demo.entity.UserBean">
+<mapper namespace="com.example.chat.impl.IUserMapper">
+    <resultMap id="BaseResultMap" type="com.example.chat.entity.UserBean">
         <result column="user_id" jdbcType="BIGINT" property="user_id"/>
         <result column="user_name" jdbcType="VARCHAR" property="user_name"/>
         <result column="user_avatar" jdbcType="VARCHAR" property="user_avatar"/>
@@ -14,11 +14,11 @@
         INSERT INTO user(user_phone,user_password) value (#{phone},#{password})
     </insert>
 
-    <select id="login" resultMap="BaseResultMap" resultType="com.example.demo.entity.UserBean">
+    <select id="login" resultMap="BaseResultMap" resultType="com.example.chat.entity.UserBean">
         SELECT * FROM user where user_phone=#{phone} and user_password=#{password}
     </select>
 
-    <select id="findUser" resultMap="BaseResultMap" resultType="com.example.demo.entity.UserBean">
+    <select id="findUser" resultMap="BaseResultMap" resultType="com.example.chat.entity.UserBean">
         SELECT * FROM user where user_phone=#{phone}
     </select>
 
